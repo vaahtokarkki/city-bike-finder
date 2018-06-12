@@ -115,29 +115,6 @@ class Form extends Component {
           </Button>
         </Grid>
       </Grid>
-      /*<div className="content">
-            <select name="minBikesLeft" value={this.state.minBikesLeft} onChange={this.handeSelectChange.bind(this)}>
-              <option value={-1}>Vain tyhjät</option>
-              <option value={0}>0</option>
-              <option value={1}>1</option>
-              <option value={2}>2</option>
-            </select>
-            <select name="resultsAmount" value={this.state.resultsAmount} onChange={this.handeSelectChange.bind(this)}>
-              <option value={1}>1</option>
-              <option value={2}>2</option>
-              <option value={3}>3</option>
-              <option value={4}>4</option>
-              <option value={5}>5</option>
-            </select>
-    
-            <button onClick={() => this.onClick()}>Nappi</button>
-            {
-                this.state.geolocationSuccess
-                    ? <p>Sijainti OK n {this.state.userLat} e {this.state.userLon}</p>
-                    : <p>Odottaa sijaintia</p>
-            }
-            {this.state.stations}
-          </div>*/
     );
   }
 }

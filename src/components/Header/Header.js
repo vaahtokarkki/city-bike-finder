@@ -2,14 +2,31 @@ import React from "react";
 
 import "./Header.css";
 import logo from "../../images/kaupunkipyora-logo.png";
-import HelpIcon from '@material-ui/icons/Help';
+import HelpIcon from "@material-ui/icons/Help";
+import { IconButton } from "@material-ui/core";
+import InfoDialog from "../InfoDialog/InfoDialog";
 
 export const Header = props => {
+
+  function handleShowDialog() {
+    window.dialogComponent.handleOpen();
+  }
+
   function headerSvg() {
     return (
       <div className="header-container">
+        <InfoDialog
+          ref={dialogComponent => {
+            window.dialogComponent = dialogComponent;
+          }}
+        />
         <img src={logo} alt="Kaupunkipyörä logo" className="logo" />
-        <HelpIcon className="help-icon" />
+        <IconButton
+          className="help-iconbutton"
+          onClick={() => handleShowDialog()}
+        >
+          <HelpIcon style={{ fontSize: 40 }} />
+        </IconButton>
         <svg
           version="1.1"
           id="Layer_1"

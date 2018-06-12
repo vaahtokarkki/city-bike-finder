@@ -24,6 +24,12 @@ class Controller extends Component {
     };
   }
 
+  showForm() {
+    this.setState({
+      queryStatus: false
+    });
+  }
+
   onFormSubmit(params) {
     this.setState({
       apiParams: {
@@ -36,14 +42,13 @@ class Controller extends Component {
 
   handleResults(params) {
     if (params === null) return;
-
     this.setState({
       queryStatus: "finished",
       bikeStations: params
     });
   }
 
-  handleGetGeolocation(params) {    
+  handleGetGeolocation(params) {
     this.setState({
       geolocation: params
     });
@@ -63,7 +68,12 @@ class Controller extends Component {
         />
       );
     } else if (this.state.queryStatus === "finished") {
-      return <Results stations={this.state.bikeStations} />;
+      return (
+        <Results
+          stations={this.state.bikeStations}
+          backFunc={this.showForm.bind(this)}
+        />
+      );
     }
 
     return (

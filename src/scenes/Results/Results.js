@@ -13,12 +13,20 @@ import ArrowBack from "@material-ui/icons/ArrowBack";
 import "./Results.css";
 
 class Results extends Component {
+  onClickBack() {
+    this.props.backFunc();
+  }
+
   render() {
     return (
       <div className="results-wrapper">
         <AppBar position="static">
           <Toolbar>
-            <IconButton color="inherit" aria-label="Back">
+            <IconButton
+              color="inherit"
+              aria-label="Back"
+              onClick={this.onClickBack.bind(this)}
+            >
               <ArrowBack />
             </IconButton>
             <Typography
@@ -43,7 +51,8 @@ class Results extends Component {
 }
 
 Results.propTypes = {
-  stations: PropTypes.array
+  stations: PropTypes.array,
+  backFunc: PropTypes.func
 };
 
 export default Results;
