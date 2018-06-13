@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
 import Form from "../scenes/Form/Form.js";
-import Header from "./Header/Header.js";
 import Results from "../scenes/Results/Results.js";
 import BikesAPI from "../services/BikesAPI.js";
 import getGeolocation from "../services/Geolocation";
@@ -76,12 +75,7 @@ class Controller extends Component {
       );
     }
 
-    return (
-      <div className="form-wrapper">
-        <Header />
-        <Form submit={this.onFormSubmit.bind(this)} />
-      </div>
-    );
+    return <Form submit={this.onFormSubmit.bind(this)} />;
   }
 }
 

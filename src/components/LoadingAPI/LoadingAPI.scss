@@ -1,0 +1,15 @@
+@import "styles/colors.scss";
+@import "styles/globals.scss";
+
+.loading-stations-wrapper {
+  height: 100%;
+  background-color: $form-bg;
+
+  h1 {
+    @extend %header-message;
+  }
+
+  .loading-icon {
+      @extend %big-icon;
+  }
+}

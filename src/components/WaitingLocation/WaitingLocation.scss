@@ -1,0 +1,15 @@
+@import "styles/colors.scss";
+@import "styles/globals.scss";
+
+.waiting-location-wrapper {
+  height: 100%;
+  background-color: $form-bg;
+
+  h1 {
+    @extend %header-message;
+  }
+
+  .waiting-location-icon {
+      @extend %big-icon;
+  }
+}

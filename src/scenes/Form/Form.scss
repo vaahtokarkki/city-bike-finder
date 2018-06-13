@@ -1,4 +1,4 @@
-@import "./colors.scss";
+@import "styles/colors.scss";
 
 .form-wrapper {
   background-color: $form-bg;
@@ -8,6 +8,7 @@
 .grid-container {
   background-color: $form-bg;
   padding-bottom: 50px;
+  margin-top: 25px;
 }
 
 .form-control {
