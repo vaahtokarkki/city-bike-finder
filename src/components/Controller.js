@@ -41,8 +41,6 @@ class Controller extends Component {
       bikeStations: params
     });
     this.props.history.push("/stations");
-    this.props.history.lenght = 0;
-    console.log(this.props.history);
   }
 
   handleGetGeolocation(params) {

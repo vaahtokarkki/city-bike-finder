@@ -52,7 +52,7 @@ class Form extends Component {
         <Grid container spacing={0} justify="center" className="grid-container">
           <Grid item xs={10}>
             <Typography variant="headline" align="center" gutterBottom>
-              Löydä lähin kaupunkipyöräasema jossa vähintään pyöriä
+              Löydä lähin kaupunkipyöräasema, jossa pyöriä vähintään
             </Typography>
           </Grid>
 
@@ -76,7 +76,7 @@ class Form extends Component {
 
           <Grid item xs={10}>
             <Typography variant="headline" align="center" gutterBottom>
-              Näytä tuloksia
+              Näytä asemia
             </Typography>
           </Grid>
 
@@ -94,7 +94,7 @@ class Form extends Component {
                 <MenuItem value={4}>4</MenuItem>
                 <MenuItem value={5}>5</MenuItem>
               </Select>
-              <FormHelperText>Tuloksia</FormHelperText>
+              <FormHelperText>Kappaletta</FormHelperText>
             </FormControl>
           </Grid>
 
