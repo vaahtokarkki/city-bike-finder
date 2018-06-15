@@ -5,6 +5,9 @@ import Results from "../scenes/Results/Results.js";
 import BikesAPI from "../services/BikesAPI.js";
 import getGeolocation from "../services/Geolocation";
 
+import { Route } from "react-router-dom";
+import { withRouter } from "react-router";
+
 class Controller extends Component {
   constructor() {
     super();
@@ -18,15 +21,8 @@ class Controller extends Component {
         minBikesLeft: 1,
         resultsAmount: 5
       },
-      queryStatus: false,
       bikeStations: []
     };
-  }
-
-  showForm() {
-    this.setState({
-      queryStatus: false
-    });
   }
 
   onFormSubmit(params) {
@@ -34,17 +30,19 @@ class Controller extends Component {
       apiParams: {
         minBikesLeft: params.minBikesLeft,
         resultsAmount: params.resultsAmount
-      },
-      queryStatus: true
+      }
     });
+    this.props.history.push("/submit");
   }
 
   handleResults(params) {
     if (params === null) return;
     this.setState({
-      queryStatus: "finished",
       bikeStations: params
     });
+    this.props.history.push("/stations");
+    this.props.history.lenght = 0;
+    console.log(this.props.history);
   }
 
   handleGetGeolocation(params) {
@@ -58,25 +56,31 @@ class Controller extends Component {
   }
 
   render() {
-    if (this.state.queryStatus === true) {
-      return (
-        <BikesAPI
-          apiParams={this.state.apiParams}
-          geolocation={this.state.geolocation}
-          callback={this.handleResults.bind(this)}
+    return (
+      <div className="wrapper">
+        <Route
+          exact
+          path="/"
+          render={props => <Form submit={this.onFormSubmit.bind(this)} />}
         />
-      );
-    } else if (this.state.queryStatus === "finished") {
-      return (
-        <Results
-          stations={this.state.bikeStations}
-          backFunc={this.showForm.bind(this)}
+        <Route
+          path="/submit"
+          render={props => (
+            <BikesAPI
+              apiParams={this.state.apiParams}
+              geolocation={this.state.geolocation}
+              callback={this.handleResults.bind(this)}
+            />
+          )}
         />
-      );
-    }
-
-    return <Form submit={this.onFormSubmit.bind(this)} />;
+        <Route
+          exact
+          path="/stations"
+          render={props => <Results stations={this.state.bikeStations} />}
+        />
+      </div>
+    );
   }
 }
 
-export default Controller;
+export default withRouter(Controller);

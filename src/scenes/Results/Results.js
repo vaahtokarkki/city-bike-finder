@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import { Link } from "react-router-dom";
+import { withRouter } from 'react-router'
+
 import BikeStationList from "./BikeStationList.js";
 
 import Grid from "@material-ui/core/Grid";
@@ -13,22 +16,25 @@ import ArrowBack from "@material-ui/icons/ArrowBack";
 import "./Results.css";
 
 class Results extends Component {
-  onClickBack() {
-    this.props.backFunc();
-  }
 
   render() {
+    if(this.props.stations.length === 0) {
+      this.props.history.push("/");
+      return null;
+    }
+
     return (
       <div className="results-wrapper">
         <AppBar position="static">
           <Toolbar>
-            <IconButton
-              color="inherit"
-              aria-label="Back"
-              onClick={this.onClickBack.bind(this)}
-            >
-              <ArrowBack />
-            </IconButton>
+            <Link to="/">
+              <IconButton
+                style={{color:"white"}}
+                aria-label="Back"
+              >
+                <ArrowBack />
+              </IconButton>
+            </Link>
             <Typography
               variant="title"
               color="inherit"
@@ -55,4 +61,4 @@ Results.propTypes = {
   backFunc: PropTypes.func
 };
 
-export default Results;
+export default withRouter(Results);
