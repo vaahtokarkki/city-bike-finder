@@ -10,7 +10,7 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Button from "@material-ui/core/Button";
-
+import Radio from "@material-ui/core/Radio";
 
 import "./Form.css";
 import { Header } from "../../components/Header/Header";
@@ -20,7 +20,7 @@ class Form extends Component {
     super();
 
     this.state = {
-      minBikesLeft: 1,
+      minBikesLeft: "1",
       resultsAmount: 5
     };
   }
@@ -39,7 +39,7 @@ class Form extends Component {
     });
   }
 
-  handeSelectChange(e) {
+  handleChange(e) {
     this.setState({
       [e.target.name]: e.target.value
     });
@@ -55,24 +55,67 @@ class Form extends Component {
               Löydä lähin kaupunkipyöräasema, jossa pyöriä vähintään
             </Typography>
           </Grid>
-
-          <Grid item xs={10} align="center">
-            <FormControl className="form-control">
-              <InputLabel htmlFor="minBikes" />
-              <Select
-                value={this.state.minBikesLeft}
-                onChange={this.handeSelectChange.bind(this)}
-                input={<Input name="minBikesLeft" id="minBikes" />}
-              >
-                <MenuItem value={1}>1</MenuItem>
-                <MenuItem value={2}>2</MenuItem>
-                <MenuItem value={3}>3</MenuItem>
-                <MenuItem value={4}>4</MenuItem>
-                <MenuItem value={5}>5</MenuItem>
-              </Select>
-              <FormHelperText>Pyöriä vähintään</FormHelperText>
-            </FormControl>
-          </Grid>
+          <div className="radio-wrapper">
+            <Grid container spacing={8}>
+              <Grid item xs>
+                <Radio
+                  name="minBikesLeft"
+                  value={"1"}
+                  onChange={this.handleChange.bind(this)}
+                  checked={this.state.minBikesLeft === "1"}
+                />
+              </Grid>
+              <Grid item xs>
+                <Radio
+                  name="minBikesLeft"
+                  value={"2"}
+                  onChange={this.handleChange.bind(this)}
+                  checked={this.state.minBikesLeft === "2"}
+                />
+              </Grid>
+              <Grid item xs>
+                <Radio
+                  name="minBikesLeft"
+                  value={"3"}
+                  onChange={this.handleChange.bind(this)}
+                  checked={this.state.minBikesLeft === "3"}
+                />
+              </Grid>
+              <Grid item xs>
+                <Radio
+                  name="minBikesLeft"
+                  value={"4"}
+                  onChange={this.handleChange.bind(this)}
+                  checked={this.state.minBikesLeft === "4"}
+                />
+              </Grid>
+              <Grid item xs>
+                <Radio
+                  name="minBikesLeft"
+                  value={"5"}
+                  onChange={this.handleChange.bind(this)}
+                  checked={this.state.minBikesLeft === "5"}
+                />
+              </Grid>
+            </Grid>
+            <Grid container spacing={8}>
+              <Grid item xs>
+                1
+              </Grid>
+              <Grid item xs>
+                2
+              </Grid>
+              <Grid item xs>
+                3
+              </Grid>
+              <Grid item xs>
+                4
+              </Grid>
+              <Grid item xs>
+                5
+              </Grid>
+            </Grid>
+          </div>
 
           <Grid item xs={10}>
             <Typography variant="headline" align="center" gutterBottom>
@@ -85,7 +128,7 @@ class Form extends Component {
               <InputLabel htmlFor="results" />
               <Select
                 value={this.state.resultsAmount}
-                onChange={this.handeSelectChange.bind(this)}
+                onChange={this.handleChange.bind(this)}
                 input={<Input name="resultsAmount" id="results" />}
               >
                 <MenuItem value={1}>1</MenuItem>
@@ -93,6 +136,11 @@ class Form extends Component {
                 <MenuItem value={3}>3</MenuItem>
                 <MenuItem value={4}>4</MenuItem>
                 <MenuItem value={5}>5</MenuItem>
+                <MenuItem value={6}>6</MenuItem>
+                <MenuItem value={7}>7</MenuItem>
+                <MenuItem value={8}>8</MenuItem>
+                <MenuItem value={9}>9</MenuItem>
+                <MenuItem value={10}>10</MenuItem>
               </Select>
               <FormHelperText>Kappaletta</FormHelperText>
             </FormControl>
@@ -105,7 +153,7 @@ class Form extends Component {
               className="submit-button"
               onClick={this.onClickSubmit.bind(this)}
             >
-              HAE 
+              HAE
             </Button>
           </Grid>
           <Grid item xs={10} align="center">
