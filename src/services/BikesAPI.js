@@ -5,11 +5,12 @@ import { Query, ApolloProvider } from "react-apollo";
 import ApolloClient from "apollo-boost";
 import gql from "graphql-tag";
 
-import WaitingLocation from "../components/WaitingLocation/WaitingLocation";
+import { WaitingLocationScene } from "../scenes/WaitingLocation/WaitingLocationScene";
 import LoadingAPI from "../components/LoadingAPI/LoadingAPI";
 import ErrorAPI from "../components/ErrorAPI/ErrorAPI";
 
 import sortBikeStations from "./SortBikeStations.js";
+
 
 class BikesAPI extends Component {
   constructor() {
@@ -63,9 +64,9 @@ class BikesAPI extends Component {
 
   render() {
     if(this.waitingLocation()) {
-      return <WaitingLocation />
+      return <WaitingLocationScene />
     } else if(this.userDenniedLoaction()) {
-      return <WaitingLocation userDennied={this.props.geolocation.userDennied} />
+      return <WaitingLocationScene userDennied={this.props.geolocation.userDennied} />
     }
     
     return (

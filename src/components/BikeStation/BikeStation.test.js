@@ -25,10 +25,6 @@ describe("BikeStation", () => {
     mountedBikeStation = undefined;
   });
 
-  console.log(bikeStation());
-
-  // All tests will go here
-
   it("always renders ListItem", () => {
     const items = bikeStation().find("ListItem");
     expect(items.length).toBeGreaterThan(0);

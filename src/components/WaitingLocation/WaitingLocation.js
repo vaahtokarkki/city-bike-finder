@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Header from "../Header/Header";
 
 import LocationOn from "@material-ui/icons/LocationOn";
 
@@ -24,12 +23,7 @@ export const WaitingLocation = props => {
       </span>
     );
   }
-  return (
-    <div className="waiting-location-wrapper">
-      <Header />
-      {message}
-    </div>
-  );
+  return <div>{message}</div>;
 };
 
 WaitingLocation.propTypes = {
