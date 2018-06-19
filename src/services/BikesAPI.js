@@ -58,14 +58,8 @@ class BikesAPI extends Component {
     return !this.props.geolocation.userDennied && this.props.geolocation.location === null;
   }
 
-  userDenniedLoaction() {
-    return this.props.geolocation.userDennied;
-  }
-
   render() {
     if(this.waitingLocation()) {
-      return <WaitingLocationScene />
-    } else if(this.userDenniedLoaction()) {
       return <WaitingLocationScene userDennied={this.props.geolocation.userDennied} />
     }
     
