@@ -6,7 +6,7 @@ import ApolloClient from "apollo-boost";
 import gql from "graphql-tag";
 
 import { WaitingLocationScene } from "../scenes/WaitingLocation/WaitingLocationScene";
-import LoadingAPI from "../components/LoadingAPI/LoadingAPI";
+import LoadingStations from "../scenes/LoadingStations/LoadingStations";
 import ErrorAPI from "../components/ErrorAPI/ErrorAPI";
 
 import sortBikeStations from "./SortBikeStations.js";
@@ -74,7 +74,7 @@ class BikesAPI extends Component {
         <Query query={this.state.query}>
           {({ loading, error, data }) => {
             if (loading) {
-              return <LoadingAPI />;
+              return <LoadingStations />;
             }
             if (error) {
               console.log("error on graphql", error);
