@@ -5,7 +5,7 @@ import Header from "./Header";
 
 configure({ adapter: new Adapter() });
 
-describe("Loading stations", () => {
+describe("Header", () => {
   let props;
   let mountedHeader;
   const header = () => {
@@ -22,7 +22,6 @@ describe("Loading stations", () => {
 
   it("always renders component", () => {
     const component = header();
-    console.log(component.debug());
     expect(component.find(".header-container").length).toBeGreaterThan(0);
   });
 
@@ -42,5 +41,20 @@ describe("Loading stations", () => {
   });
 
   //TODO: Test modal
-  
+
+  it("always renders modal component", () => {
+    const headerComponent = header();
+    const modalComponent = headerComponent.find("InfoDialog");
+    expect(modalComponent.children().length).toBeGreaterThan(0);
+  });
+
+  it("opens modal on click", () => {
+    const headerComponent = header();
+
+    const openModalButton = headerComponent.find(".help-iconbutton>button");
+    openModalButton.simulate("click");
+
+    const modalComponent = headerComponent.find("Dialog");
+    expect(modalComponent.props().open).toBe(true);
+  });
 });
