@@ -1,5 +1,5 @@
 {
-  "name": "cbikes",
+  "name": "city-bikes-finder",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
