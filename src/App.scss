@@ -1,6 +1,5 @@
 html,
-body,
-#root {
+body {
   height: 100%;
   font-family: 'Roboto', sans-serif;
 }
@@ -9,8 +8,15 @@ body {
   display: contents;
 }
 
-.wrapper {
-  height: 100%;
+#root {
+  display: flex;
+}
+
+.wrapper, #root {
+  height: auto;
+  min-height: 100%;
+  width: auto;
+  min-width: 100%;
 }
 
 
