@@ -29,20 +29,20 @@ jobs:
       - run:
           shell: /bin/sh
           command: |
-            sudo npm install
+            npm install
             npm run build-css
             npm test
 
-      #- save_cache:
+      - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-  deployment:
-    staging:
-      branch: master
-      heroku:
-        appname: city-bikes-finder 
+      - deployment:
+        staging:
+          branch: master
+          heroku:
+            appname: city-bikes-finder 
 
 
 
