@@ -20,11 +20,11 @@ jobs:
       - checkout
 
       # Download and cache dependencies
-     # - restore_cache:
-     #     keys:
-     #     - v1-dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
-      #    - v1-dependencies-
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+           - v1-dependencies-
 
       - run:
           shell: /bin/sh
@@ -34,12 +34,15 @@ jobs:
             npm test
 
       #- save_cache:
-      #    paths:
-      #      - node_modules
-      #    key: v1-dependencies-{{ checksum "package.json" }}
-      #- run: npm install node-sass-chokidar
-      #- run: npm run build-css
-      # run tests!
-      #- run: npm test
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+  deployment:
+    staging:
+      branch: master
+      heroku:
+        appname: city-bikes-finder 
+
 
 
