@@ -26,15 +26,20 @@ jobs:
           # fallback to using the latest cache if no exact match is found
       #    - v1-dependencies-
 
-      - run: sudo npm install -g
+      - run:
+          shell: /bin/sh
+          command: |
+            sudo npm install
+            npm run build-css
+            npm test
 
       #- save_cache:
       #    paths:
       #      - node_modules
       #    key: v1-dependencies-{{ checksum "package.json" }}
-      - run: npm install node-sass-chokidar
-      - run: npm run build-css
+      #- run: npm install node-sass-chokidar
+      #- run: npm run build-css
       # run tests!
-      - run: npm test
+      #- run: npm test
 
 
