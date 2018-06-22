@@ -32,7 +32,7 @@ jobs:
       #    paths:
       #      - node_modules
       #    key: v1-dependencies-{{ checksum "package.json" }}
-      
+      - run: npm install node-sass-chokidar
       - run: npm run build-css
       # run tests!
       - run: npm test
