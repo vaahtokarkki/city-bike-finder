@@ -33,7 +33,7 @@ jobs:
       #      - node_modules
       #    key: v1-dependencies-{{ checksum "package.json" }}
       
-      - run: npm build-css
+      - run: node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/
       # run tests!
       - run: npm test
 
