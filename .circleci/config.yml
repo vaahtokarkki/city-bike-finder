@@ -35,7 +35,7 @@ jobs:
           paths:
             - ./node_modules
 
-      - deployment:
+    deployment:
         staging:
           branch: master
           heroku:
