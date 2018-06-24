@@ -26,7 +26,7 @@ jobs:
       - run:
           shell: /bin/sh
           command: |
-            npm install npm@latest
+            sudo npm install -g npm@latest
             npm run build-css
             npm test
 
