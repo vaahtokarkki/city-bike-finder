@@ -27,7 +27,7 @@ jobs:
           shell: /bin/sh
           command: |
             npm install npm@latest
-            npm install codecov -g
+            sudo npm install codecov -g
             npm run build-css
             npm test
             npm run test-coverage
