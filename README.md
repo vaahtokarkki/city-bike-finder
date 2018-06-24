@@ -4,6 +4,8 @@
 
 Simple React app to find the closest city bike station having given number of free bikes.
 
+[Live demo](https://city-bikes-finder.herokuapp.com) of app.
+
 ---
 
 ## Requirements
@@ -24,11 +26,14 @@ Now you should have running app on https://localhost:3000
 
 ---
 
-## Usage
-
 ## Examples
 
 Screenshot of app:
+
+---
+
+### Todo:
+* Implement map of stations
 
 ---
 

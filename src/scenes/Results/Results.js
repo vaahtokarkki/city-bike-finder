@@ -1,49 +1,23 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import { Link } from "react-router-dom";
-import { withRouter } from 'react-router'
-
 import BikeStationList from "./BikeStationList.js";
+import BikesAppBar from "../../components/BikesAppBar/BikesAppBar";
 
 import Grid from "@material-ui/core/Grid";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
-import ArrowBack from "@material-ui/icons/ArrowBack";
 
 import "./Results.css";
 
 class Results extends Component {
-
   render() {
-    if(this.props.stations.length === 0) {
+    if (this.props.stations.length === 0) {
       this.props.history.push("/");
       return null;
     }
 
     return (
       <div className="results-wrapper">
-        <AppBar position="static">
-          <Toolbar>
-            <Link to="/">
-              <IconButton
-                style={{color:"white"}}
-                aria-label="Back"
-              >
-                <ArrowBack />
-              </IconButton>
-            </Link>
-            <Typography
-              variant="title"
-              color="inherit"
-              className="appbar-title"
-            >
-              Lähimmät pyöräasemat
-            </Typography>
-          </Toolbar>
-        </AppBar>
+        <BikesAppBar />
         <div className="resultslist-wrapper">
           <Grid container spacing={0} justify="center">
             <Grid item xs={10}>
@@ -57,8 +31,7 @@ class Results extends Component {
 }
 
 Results.propTypes = {
-  stations: PropTypes.array,
-  backFunc: PropTypes.func
+  stations: PropTypes.array.isRequired
 };
 
-export default withRouter(Results);
+export default Results;

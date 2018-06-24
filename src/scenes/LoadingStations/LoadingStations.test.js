@@ -2,7 +2,6 @@ import React from "react";
 import { mount, configure } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import LoadingStations from "./LoadingStations";
-import { wrap } from "module";
 
 configure({ adapter: new Adapter() });
 
