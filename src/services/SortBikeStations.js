@@ -2,11 +2,12 @@ import geodist from 'geodist'
 
 export function sortBikeStations(stations, resultsAmount, userLat, userLon) {
     let withDistances = stations.map(obj => {
-        const distance = geodist(
+        let distance = geodist(
             {lat: userLat, lon: userLon},
             {lat: obj.lat, lon: obj.lon},
             {exact: true, unit: 'meters'}
         );
+        distance = Math.round(distance);
         return {distance: distance, station: obj}
     });
 

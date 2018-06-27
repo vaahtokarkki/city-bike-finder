@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import Form from "../scenes/Form/Form.js";
 import Results from "../scenes/Results/Results.js";
 import BikesAPI from "../services/BikesAPI.js";
+import MapScene from "../scenes/Map/MapScene";
+
 import getGeolocation from "../services/Geolocation";
 
 import { Route } from "react-router-dom";
@@ -64,6 +66,11 @@ class Controller extends Component {
           )}
         />
         <Route exact path="/stations" component={Results} />
+        <Route
+          exact
+          path="/map"
+          render={props => <MapScene geolocation={this.state.geolocation} />}
+        />
       </div>
     );
   }

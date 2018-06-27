@@ -1,0 +1,8 @@
+@import "styles/colors.scss";
+
+.map {
+    height: 100%;
+    height: -webkit-calc(100% - 64px);
+    height: -moz-calc(100% - 64px);
+    height: calc(100% - 64px);
+}
