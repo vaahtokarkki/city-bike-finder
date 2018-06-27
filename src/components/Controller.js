@@ -29,8 +29,9 @@ class Controller extends Component {
     this.setState({
       apiParams: {
         minBikesLeft: params.minBikesLeft,
-        resultsAmount: params.resultsAmount
-      }
+        resultsAmount: params.resultsAmount,
+      },
+      submitFromForm: true //To check if the query came from form page or browser's back button
     });
     this.props.history.push("/submit");
   }
@@ -38,7 +39,8 @@ class Controller extends Component {
   handleResults(params) {
     if (params === null) return;
     this.setState({
-      bikeStations: params
+      bikeStations: params,
+      submitFromForm: false //To check if the query came from form page or browser's back button
     });
     this.props.history.push("/stations");
   }
@@ -68,6 +70,7 @@ class Controller extends Component {
               apiParams={this.state.apiParams}
               geolocation={this.state.geolocation}
               callback={this.handleResults.bind(this)}
+              submitFromForm={this.state.submitFromForm}
             />
           )}
         />

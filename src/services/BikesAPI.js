@@ -36,8 +36,15 @@ class BikesAPI extends Component {
             state
           }
         }
-      `
+      `,
+      fromForm: true
     };
+  }
+
+  componentWillMount() {
+    if(!this.props.submitFromForm) {
+      window.history.go(-1);
+    }
   }
 
   parseData(data, amount) {
@@ -102,7 +109,8 @@ class BikesAPI extends Component {
 BikesAPI.propTypes = {
   apiParams: PropTypes.object,
   geolocation: PropTypes.object,
-  callback: PropTypes.func
+  callback: PropTypes.func,
+  submitFromForm: PropTypes.bool //To check if the query came from form page or browser's back button
 };
 
 export default BikesAPI;

@@ -1,6 +1,5 @@
 import React from "react";
 
-import { Link } from "react-router-dom";
 import { withRouter } from "react-router";
 
 import AppBar from "@material-ui/core/AppBar";
@@ -12,14 +11,20 @@ import ArrowBack from "@material-ui/icons/ArrowBack";
 import "./BikesAppBar.css";
 
 export const BikesAppBar = props => {
+  function onBack() {
+    props.history.go(-2);
+  }
+
   return (
     <AppBar position="static">
       <Toolbar>
-        <Link to="/">
-          <IconButton style={{ color: "white" }} aria-label="Back">
-            <ArrowBack />
-          </IconButton>
-        </Link>
+        <IconButton
+          onClick={() => onBack()}
+          style={{ color: "white" }}
+          aria-label="Back"
+        >
+          <ArrowBack />
+        </IconButton>
         <Typography variant="title" color="inherit" className="appbar-title">
           Lähimmät pyöräasemat
         </Typography>

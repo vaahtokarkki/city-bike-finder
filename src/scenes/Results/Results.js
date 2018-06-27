@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { withRouter } from "react-router";
 
 import BikeStationList from "./BikeStationList.js";
 import BikesAppBar from "../../components/BikesAppBar/BikesAppBar";
@@ -34,4 +35,4 @@ Results.propTypes = {
   stations: PropTypes.array.isRequired
 };
 
-export default Results;
+export default withRouter(Results);
