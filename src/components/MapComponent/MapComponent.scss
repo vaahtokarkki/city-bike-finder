@@ -5,4 +5,22 @@
     height: -webkit-calc(100% - 64px);
     height: -moz-calc(100% - 64px);
     height: calc(100% - 64px);
+
+    .station-icon {
+        width: 30px !important;
+        height: 30px !important;
+        background: $form-bg;
+        border-radius: 30px;
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .popup, .leaflet-popup-content-wrapper, .leaflet-popup-tip  {
+        background: red;
+        border-radius: 0px;
+    }
+
+    .leaflet-popup-close-button {
+        color: green;
+    }
 }

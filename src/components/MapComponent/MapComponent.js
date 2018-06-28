@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
+import {DivIcon} from "leaflet";
 
 import "./MapComponent.css";
 
@@ -44,11 +45,13 @@ class MapComponent extends Component {
 
   addStations() {
     if(this.props.stations.length === 0) return [];
+    
     let arrayOfMarkes = this.props.stations.map((s, i)  => {
       const pos = [s.station.lat, s.station.lon];
+      let stationIcon = new DivIcon({className: 'station-icon', html:i+1});
       const marker = (
-        <Marker position={pos} key={i}>
-          <Popup>
+        <Marker position={pos} key={i} icon={stationIcon}>
+          <Popup className="popup">
             <span>
               <b>{s.station.name}</b>
               <br />
@@ -68,14 +71,15 @@ class MapComponent extends Component {
     const userCoords = this.props.geolocation.location.coords;
     const position = [userCoords.latitude, userCoords.longitude];
     const markers = this.addStations();
+    
     return (
       <Map center={position} zoom={this.state.zoom} className="map">
         <TileLayer
           attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-          url=" https://cdn.digitransit.fi/map/v1/hsl-map/{z}/{x}/{y}@2x.png"
+          url=" https://cdn.digitransit.fi/map/v1/hsl-map/{z}/{x}/{y}.png"
         />
-        <Marker position={position}>
-          <Popup>
+        <Marker position={position} >
+          <Popup className="popup">
             <span>
               A pretty CSS3 popup. <br /> Easily customizable.
             </span>
