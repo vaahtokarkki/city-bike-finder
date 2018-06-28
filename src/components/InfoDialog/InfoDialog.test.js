@@ -2,7 +2,6 @@ import React from "react";
 import { mount, configure } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import InfoDialog from "./InfoDialog";
-import { ExpansionPanel, ExpansionPanelActions } from "@material-ui/core";
 
 configure({ adapter: new Adapter() });
 
