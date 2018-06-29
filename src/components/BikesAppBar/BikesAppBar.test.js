@@ -41,10 +41,4 @@ describe("BikesAppBar", () => {
     const title = appbar.find("Typography");
     expect(title.text().length).toBeGreaterThan(0);
   });
-
-  it("Link gets always rendered", () => {
-    const appbar = bikesAppBar();
-    const link = appbar.find("Toolbar Link");
-    expect(link.length).toBeGreaterThan(0);
-  });
 });

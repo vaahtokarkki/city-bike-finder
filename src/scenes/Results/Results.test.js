@@ -66,4 +66,10 @@ describe("Loading stations", () => {
     const wrapper = component.find("AppBar");
     expect(wrapper.length).toBeGreaterThan(0);
   });
+
+  it("always renders BikeStationList", () => {
+    const component = results();
+    const stationsContainer = component.find("List");
+    expect(stationsContainer.length).toBeGreaterThan(0);
+  })
 });

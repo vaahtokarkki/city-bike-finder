@@ -17,7 +17,7 @@ describe("WaitingLocation", () => {
 
   beforeEach(() => {
     (props = {
-      userDennied: undefined
+      userDennied: false
     }),
       (mountedWaitingLocation = undefined);
   });

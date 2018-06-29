@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 
-import BikeStationList from "./BikeStationList.js";
+import BikeStationList from "../../components/BikeStationList/BikeStationList";
 import BikesAppBar from "../../components/BikesAppBar/BikesAppBar";
 
 import Grid from "@material-ui/core/Grid";
@@ -21,7 +21,7 @@ class Results extends Component {
         <BikesAppBar />
         <div className="resultslist-wrapper">
           <Grid container spacing={0} justify="center">
-            <Grid item xs={10}>
+            <Grid item xs={10} className="stations-container">
               <BikeStationList stations={this.props.stations} />
             </Grid>
           </Grid>
