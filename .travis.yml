@@ -1,3 +1,11 @@
 language: node_js
-node_js: "lts/*"
-before_script: node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/
+node_js: lts/*
+before_script: node-sass-chokidar --include-path ./src --include-path ./node_modules
+  src/ -o src/
+deploy:
+  provider: heroku
+  api_key:
+    secure: DDhSA6KK7ILkpMWJCj2NBhtaXyDhQqjJah4jDydSpfDQ6ZoLrNcUgqG449pysOIbrKdA0J2TOw4m1UDorGYMZwQ66DH3oMqH28xHnquTefQz12ZxkqNWZxH0GagVBK7UQMmIzsYitxQgSoZ0+ypy4aR5kqiVOXrX0iA2/+zYBoE+XvhVGiowQ3xtkce/DTVSPzzhFp8DQIjwyvvmr6X4uQSt2/fpNxGr8Q7bCbc/WI6wszcEvvbXsw2vybgjnYlH5qNX0TH2HHgyC3wUMKB3piMJlM5yG2wfGFuehl61wSy9DxuGdOKbA74s+B8gOGZP0JllxIge9h0NDt6VtwRhDT5cNZc/7Fo4CaI5JemtVnAqN2Z65uyZZqwn6qDUq0Gv8iydfm4Fu5aDYwr9bhn5M09VDMb6C5h1EghB2He10k17fPF8qboDim+36gkG3grf4t9M6N7nZis2oqa6RhD5dOp8hUJ++4eDc0o9Fv7v0UT3YJfVWl/eqVWFYgq4MumtLs6r8l3wuZqKaraHJrj/DH77KWbYOwq+6O8/itFfiJ5d51jscX6m46+G4uTRVQzPM+i6gJYGQeJId9kqKv0G2quP0kbHEwLZY1FnErR3oq33BrPComvpugKdvGBhiJRx8zX6NVtWI2wOfGo3sv0f7l179e66gDPNaSta2idJvj0=
+  app: city-bike-finder
+  on:
+    repo: vaahtokarkki/city-bike-finder
