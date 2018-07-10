@@ -20,7 +20,7 @@ Install all dependencies:
 
 Start app:
 
-    npm run
+    npm start
 
 Now you should have running app on https://localhost:3000
 
@@ -33,13 +33,15 @@ Screenshot of app:
 ---
 
 ### Todo:
-* Implement map of stations
+* Implement tests
+* Add user geolocation to Flux store
 
 ---
 
 ### Built with
 
 - [Material-UI](https://github.com/mui-org/material-ui/) - Material UI components
+- [Leaflet](https://github.com/Leaflet/Leaflet) - JS Map library, used with [react-leaflet](https://github.com/PaulLeCam/react-leaflet)
 - [React Apollo](https://github.com/apollographql/react-apollo) - GraphQL client for React
 - [geodist](https://github.com/cmoncrief/geodist) - Coordinates distance calculation
 
