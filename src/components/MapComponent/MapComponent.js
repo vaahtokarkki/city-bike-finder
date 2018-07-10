@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import BikeStationStore from "../../stores/BikeStationStore";
 
-import { Map, TileLayer, Marker, Popup, CircleMarker } from "react-leaflet";
+import { Map, TileLayer, Marker, Popup, Circle } from "react-leaflet";
 import { DivIcon } from "leaflet";
 
 import "./MapComponent.css";
@@ -64,8 +64,11 @@ class MapComponent extends Component {
     const markers = this.addStations();
 
     let radius = this.props.geolocation.location.coords.accuracy;
-    if(radius > 25) radius=25;
- 
+    if (radius > 80) {
+      radius = 80;
+    } else if (radius < 40) {
+      radius = 40;
+    }
 
     return (
       <Map center={position} zoom={this.state.zoom} className="map">
@@ -73,8 +76,13 @@ class MapComponent extends Component {
           attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
           url=" https://cdn.digitransit.fi/map/v1/hsl-map/{z}/{x}/{y}@2x.png"
         />
-        <CircleMarker center={position} radius={radius} stroke={false} fillOpacity={0.4}/>
-        <CircleMarker center={position} radius={5} stroke={false} fillOpacity={1}/>
+        <Circle
+          center={position}
+          radius={radius}
+          stroke={false}
+          fillOpacity={0.4}
+        />
+        <Circle center={position} radius={5} stroke={false} fillOpacity={1} />
         {markers}
       </Map>
     );
