@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { withRouter } from "react-router";
 
 import BikeStationList from "../../components/BikeStationList/BikeStationList";
 import BikesAppBar from "../../components/BikesAppBar/BikesAppBar";
@@ -11,18 +9,13 @@ import "./Results.css";
 
 class Results extends Component {
   render() {
-    if (this.props.stations.length === 0) {
-      this.props.history.push("/");
-      return null;
-    }
-
     return (
       <div className="results-wrapper">
         <BikesAppBar />
         <div className="resultslist-wrapper">
           <Grid container spacing={0} justify="center">
             <Grid item xs={10} className="stations-container">
-              <BikeStationList stations={this.props.stations} />
+              <BikeStationList />
             </Grid>
           </Grid>
         </div>
@@ -31,8 +24,4 @@ class Results extends Component {
   }
 }
 
-Results.propTypes = {
-  stations: PropTypes.array.isRequired
-};
-
-export default withRouter(Results);
+export default Results;

@@ -20,24 +20,20 @@ jobs:
       - checkout
 
       # Download and cache dependencies
-      #- restore_cache: # special step to restore the dependency cache 
-      #    key: dependency-cache-{{ checksum "package.json" }}
+      - restore_cache: # special step to restore the dependency cache 
+          key: dependency-cache-{{ checksum "package.json" }}
 
       - run:
           shell: /bin/sh
           command: |
             npm install npm@latest
-            sudo npm install codecov -g
             npm run build-css
             npm test
-            npm run test-coverage
-            codecov -t $CODECOV_REPO_TOKEN
 
-
-      #- save_cache: # special step to save the dependency cache
-      #    key: dependency-cache-{{ checksum "package.json" }}
-      #    paths:
-      #      - ./node_modules
+      - save_cache: # special step to save the dependency cache
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
 
   deploy:
       docker:
@@ -59,4 +55,3 @@ workflows:
           filters:
             branches:
               only: master
-

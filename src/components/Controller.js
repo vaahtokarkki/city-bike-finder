@@ -20,8 +20,7 @@ class Controller extends Component {
       apiParams: {
         minBikesLeft: 1,
         resultsAmount: 5
-      },
-      bikeStations: []
+      }
     };
   }
 
@@ -29,20 +28,11 @@ class Controller extends Component {
     this.setState({
       apiParams: {
         minBikesLeft: params.minBikesLeft,
-        resultsAmount: params.resultsAmount,
+        resultsAmount: params.resultsAmount
       },
       submitFromForm: true //To check if the query came from form page or browser's back button
     });
     this.props.history.push("/submit");
-  }
-
-  handleResults(params) {
-    if (params === null) return;
-    this.setState({
-      bikeStations: params,
-      submitFromForm: false //To check if the query came from form page or browser's back button
-    });
-    this.props.history.push("/stations");
   }
 
   handleGetGeolocation(params) {
@@ -69,16 +59,11 @@ class Controller extends Component {
             <BikesAPI
               apiParams={this.state.apiParams}
               geolocation={this.state.geolocation}
-              callback={this.handleResults.bind(this)}
               submitFromForm={this.state.submitFromForm}
             />
           )}
         />
-        <Route
-          exact
-          path="/stations"
-          render={props => <Results stations={this.state.bikeStations} />}
-        />
+        <Route exact path="/stations" component={Results} />
       </div>
     );
   }

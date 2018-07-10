@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import BikeStationsActions from "../Actions/BikeStationsActions";
+import { withRouter } from "react-router";
 
 import { Query, ApolloProvider } from "react-apollo";
 import ApolloClient from "apollo-boost";
@@ -18,10 +20,7 @@ class BikesAPI extends Component {
 
     this.state = {
       client: new ApolloClient({
-        uri: "https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql",
-        opts: {
-          mode: "no-cors"
-        }
+        uri: "https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql"
       }),
       query: gql`
         {
@@ -36,12 +35,12 @@ class BikesAPI extends Component {
             state
           }
         }
-      `,
-      fromForm: true
+      `
     };
   }
 
   componentWillMount() {
+    console.log(this.props.submitFromForm);
     if(!this.props.submitFromForm) {
       window.history.go(-1);
     }
@@ -97,7 +96,9 @@ class BikesAPI extends Component {
 
             sorted = sorted.slice(0, this.props.resultsAmount);
 
-            this.props.callback(sorted);
+            BikeStationsActions.addStations(sorted);
+            this.props.history.push("/stations");
+
             return null;
           }}
         </Query>
@@ -109,8 +110,7 @@ class BikesAPI extends Component {
 BikesAPI.propTypes = {
   apiParams: PropTypes.object,
   geolocation: PropTypes.object,
-  callback: PropTypes.func,
   submitFromForm: PropTypes.bool //To check if the query came from form page or browser's back button
 };
 
-export default BikesAPI;
+export default withRouter(BikesAPI);
