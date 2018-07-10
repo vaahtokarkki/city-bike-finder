@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import BikeStationStore from "../../stores/BikeStationStore";
 
-import { Map, TileLayer, Marker, Popup } from "react-leaflet";
-import {DivIcon} from "leaflet";
+import { Map, TileLayer, Marker, Popup, CircleMarker } from "react-leaflet";
+import { DivIcon } from "leaflet";
 
 import "./MapComponent.css";
 
@@ -10,54 +11,44 @@ class MapComponent extends Component {
   constructor() {
     super();
     this.state = {
-      stations: [
-        {
-          distance: 25,
-          station: {
-            name: "Test station",
-            lat: 60.1,
-            lon: 24.93,
-            bikesAvailable: 5
-          }
-        },
-        {
-          distance: 50,
-          station: {
-            name: "Test station 2",
-            lat: 60.11,
-            lon: 24.94,
-            bikesAvailable: 1
-          }
-        },
-        {
-          distance: 100,
-          station: {
-            name: "Test station",
-            lat: 60.09,
-            lon: 24.83,
-            bikesAvailable: 0
-          }
-        }
-      ],
-      zoom: 13
+      stations: BikeStationStore.getAllItems(),
+      zoom: 15
     };
+    this._onChange = this._onChange.bind(this);
+  }
+
+  _onChange() {
+    this.setState({ items: BikeStationStore.getAllItems() });
+  }
+
+  componentWillMount() {
+    BikeStationStore.addChangeListener(this._onChange);
+  }
+
+  componentWillUnmount() {
+    BikeStationStore.removeChangeListener(this._onChange);
   }
 
   addStations() {
-    if(this.props.stations.length === 0) return [];
-    
-    let arrayOfMarkes = this.props.stations.map((s, i)  => {
+    if (this.state.stations === undefined || this.state.stations.length === 0)
+      return [];
+
+    let arrayOfMarkes = this.state.stations.map((s, i) => {
       const pos = [s.station.lat, s.station.lon];
-      let stationIcon = new DivIcon({className: 'station-icon', html:i+1});
+      let stationIcon = new DivIcon({
+        className: "station-icon",
+        html: s.station.bikesAvailable
+      });
       const marker = (
         <Marker position={pos} key={i} icon={stationIcon}>
           <Popup className="popup">
             <span>
-              <b>{s.station.name}</b>
-              <br />
-              <span>Pyöriä jäljellä: {s.station.bikesAvailable}</span>
-              <br />
-              <span>Etäisyys {s.distance} metriä</span>
+              <div className="title">{s.station.name}</div>
+              <div className="description">
+                Pyöriä jäljellä: {s.station.bikesAvailable} kpl
+                <br />
+                Etäisyys {s.distance} metriä
+              </div>
             </span>
           </Popup>
         </Marker>
@@ -71,20 +62,19 @@ class MapComponent extends Component {
     const userCoords = this.props.geolocation.location.coords;
     const position = [userCoords.latitude, userCoords.longitude];
     const markers = this.addStations();
-    
+
+    let radius = this.props.geolocation.location.coords.accuracy;
+    if(radius > 25) radius=25;
+ 
+
     return (
       <Map center={position} zoom={this.state.zoom} className="map">
         <TileLayer
           attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-          url=" https://cdn.digitransit.fi/map/v1/hsl-map/{z}/{x}/{y}.png"
+          url=" https://cdn.digitransit.fi/map/v1/hsl-map/{z}/{x}/{y}@2x.png"
         />
-        <Marker position={position} >
-          <Popup className="popup">
-            <span>
-              A pretty CSS3 popup. <br /> Easily customizable.
-            </span>
-          </Popup>
-        </Marker>
+        <CircleMarker center={position} radius={radius} stroke={false} fillOpacity={0.4}/>
+        <CircleMarker center={position} radius={5} stroke={false} fillOpacity={1}/>
         {markers}
       </Map>
     );
@@ -92,7 +82,6 @@ class MapComponent extends Component {
 }
 
 MapComponent.propTypes = {
-  stations: PropTypes.array.isRequired,
   geolocation: PropTypes.object.isRequired
 };
 

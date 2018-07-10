@@ -40,7 +40,6 @@ class BikesAPI extends Component {
   }
 
   componentWillMount() {
-    console.log(this.props.submitFromForm);
     if(!this.props.submitFromForm) {
       window.history.go(-1);
     }

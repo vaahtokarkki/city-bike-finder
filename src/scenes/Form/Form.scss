@@ -1,4 +1,5 @@
 @import "styles/colors.scss";
+@import "styles/globals.scss";
 
 .form-wrapper {
   background-color: $form-bg;
@@ -30,10 +31,4 @@
   margin-top: 20px !important;
 }
 
-.submit-button-outlined {
-  transform: scale(1.3,1.3) !important;
-  color: $submit-bg !important;
-  border: 2px $submit-bg solid !important;
-  margin-top: 40px !important;
-  margin-bottom: 50px !important;
-}
+

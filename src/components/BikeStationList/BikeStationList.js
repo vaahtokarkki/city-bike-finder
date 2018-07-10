@@ -26,8 +26,6 @@ class BikeStationList extends Component {
   }
 
   render() {
-    console.log("stations", this.state.stations);
-
     if (this.state.stations === undefined || this.state.stations.length === 0) {
       this.props.history.push("/");
       return null;

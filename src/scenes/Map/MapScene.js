@@ -28,7 +28,6 @@ class MapScene extends Component {
       <div className="map-wrapper">
         <BikesAppBar />
         <MapComponent
-          stations={this.props.stations}
           geolocation={this.props.geolocation}
         />
       </div>
@@ -37,7 +36,6 @@ class MapScene extends Component {
 }
 
 MapScene.propTypes = {
-  stations: PropTypes.array.isRequired,
   geolocation: PropTypes.object.isRequired
 };
 

@@ -160,7 +160,7 @@ class Form extends Component {
             <Button
               variant="outlined"
               color="primary"
-              className="submit-button-outlined"
+              className="button-outlined"
               onClick={this.onClickFindEmpty.bind(this)}
             >
               LÖYDÄ LÄHIN TYHJÄ ASEMA
