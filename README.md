@@ -1,6 +1,6 @@
 # HSL City bikes finder
 
-[![CircleCI](https://circleci.com/gh/vaahtokarkki/city-bike-finder.svg?style=svg)](https://circleci.com/gh/vaahtokarkki/city-bike-finder) [![codecov](https://codecov.io/gh/vaahtokarkki/city-bike-finder/branch/master/graph/badge.svg)](https://codecov.io/gh/vaahtokarkki/city-bike-finder) [![DeepScan grade](https://deepscan.io/api/projects/2723/branches/19266/badge/grade.svg)](https://deepscan.io/dashboard#view=project&pid=2723&bid=19266)
+[![Build Status](https://travis-ci.org/vaahtokarkki/city-bike-finder.svg?branch=master)](https://travis-ci.org/vaahtokarkki/city-bike-finder) [![codecov](https://codecov.io/gh/vaahtokarkki/city-bike-finder/branch/master/graph/badge.svg)](https://codecov.io/gh/vaahtokarkki/city-bike-finder) [![DeepScan grade](https://deepscan.io/api/projects/2723/branches/19266/badge/grade.svg)](https://deepscan.io/dashboard#view=project&pid=2723&bid=19266)
 
 Simple React app to find the closest city bike station having given number of free bikes.
 
