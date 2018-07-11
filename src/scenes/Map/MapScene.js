@@ -1,42 +1,53 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
+import GeolocationStore from "../../stores/GeolocationStore";
 
 import BikesAppBar from "../../components/BikesAppBar/BikesAppBar";
+import { WaitingLocationScene } from "../../scenes/WaitingLocation/WaitingLocationScene";
 import MapComponent from "../../components/MapComponent/MapComponent";
-import WaitingLocationScene from "../WaitingLocation/WaitingLocationScene";
 
 import "./MapScene.css";
 
 class MapScene extends Component {
+  constructor() {
+    super();
+    this.state = { geolocation: GeolocationStore.getLocation() };
+    this._onChange = this._onChange.bind(this);
+  }
+
+  _onChange() {
+    this.setState({
+      geolocation: GeolocationStore.getLocation()
+    });
+  }
+
+  componentWillMount() {
+    GeolocationStore.addChangeListener(this._onChange);
+  }
+
+  componentWillUnmount() {
+    GeolocationStore.addChangeListener(this._onChange);
+  }
+
   waitingLocation() {
-    return (
-      !this.props.geolocation.userDennied &&
-      this.props.geolocation.location === null
-    );
+    if (this.state.geolocation == null || this.state.geolocation.userDennied) {
+      return true;
+    }
+
+    return false;
   }
 
   render() {
     if (this.waitingLocation()) {
-      return (
-        <WaitingLocationScene
-          userDennied={this.props.geolocation.userDennied}
-        />
-      );
+      return <WaitingLocationScene />;
     }
 
     return (
       <div className="map-wrapper">
         <BikesAppBar />
-        <MapComponent
-          geolocation={this.props.geolocation}
-        />
+        <MapComponent geolocation={this.state.geolocation} />
       </div>
     );
   }
 }
-
-MapScene.propTypes = {
-  geolocation: PropTypes.object.isRequired
-};
 
 export default MapScene;

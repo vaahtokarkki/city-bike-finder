@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import BikeStationsActions from "../Actions/BikeStationsActions";
 import { withRouter } from "react-router";
+
+import BikeStationsActions from "../Actions/BikeStationsActions";
+import GeolocationStore from "../stores/GeolocationStore";
 
 import { Query, ApolloProvider } from "react-apollo";
 import ApolloClient from "apollo-boost";
@@ -13,7 +15,6 @@ import ErrorAPI from "../components/ErrorAPI/ErrorAPI";
 
 import sortBikeStations from "./SortBikeStations.js";
 
-
 class BikesAPI extends Component {
   constructor() {
     super();
@@ -22,6 +23,7 @@ class BikesAPI extends Component {
       client: new ApolloClient({
         uri: "https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql"
       }),
+      geolocation: GeolocationStore.getLocation(),
       query: gql`
         {
           bikeRentalStations {
@@ -37,10 +39,21 @@ class BikesAPI extends Component {
         }
       `
     };
+    this._onChange = this._onChange.bind(this);
+  }
+
+  _onChange() {
+    this.setState({ geolocation: GeolocationStore.getLocation() });
+  }
+
+  componentWillUnmount() {
+    GeolocationStore.removeChangeListener(this._onChange);
   }
 
   componentWillMount() {
-    if(!this.props.submitFromForm) {
+    GeolocationStore.addChangeListener(this._onChange);
+
+    if (!this.props.submitFromForm) {
       window.history.go(-1);
     }
   }
@@ -60,14 +73,18 @@ class BikesAPI extends Component {
   }
 
   waitingLocation() {
-    return !this.props.geolocation.userDennied && this.props.geolocation.location === null;
+    if (this.state.geolocation == null || this.state.geolocation.userDennied) {
+      return true;
+    }
+
+    return false;
   }
 
   render() {
-    if(this.waitingLocation()) {
-      return <WaitingLocationScene userDennied={this.props.geolocation.userDennied} />
+    if (this.waitingLocation()) {
+      return <WaitingLocationScene />;
     }
-    
+
     return (
       <ApolloProvider client={this.state.client}>
         <Query query={this.state.query}>
@@ -89,8 +106,8 @@ class BikesAPI extends Component {
             let sorted = sortBikeStations(
               parsed,
               this.props.apiParams.resultsAmount,
-              this.props.geolocation.location.coords.latitude,
-              this.props.geolocation.location.coords.longitude
+              this.state.geolocation.location.coords.latitude,
+              this.state.geolocation.location.coords.longitude
             );
 
             sorted = sorted.slice(0, this.props.resultsAmount);
@@ -108,7 +125,6 @@ class BikesAPI extends Component {
 
 BikesAPI.propTypes = {
   apiParams: PropTypes.object,
-  geolocation: PropTypes.object,
   submitFromForm: PropTypes.bool //To check if the query came from form page or browser's back button
 };
 

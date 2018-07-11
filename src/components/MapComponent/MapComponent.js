@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+
 import BikeStationStore from "../../stores/BikeStationStore";
 
 import { Map, TileLayer, Marker, Popup, Circle } from "react-leaflet";
@@ -18,7 +19,9 @@ class MapComponent extends Component {
   }
 
   _onChange() {
-    this.setState({ items: BikeStationStore.getAllItems() });
+    this.setState({
+      stations: BikeStationStore.getAllItems()
+    });
   }
 
   componentWillMount() {

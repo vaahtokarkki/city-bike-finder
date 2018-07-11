@@ -9,7 +9,7 @@ export const WaitingLocationScene = (props) => {
     return (
         <div className="waiting-location-wrapper">
         <Header />
-        <WaitingLocation userDennied={props.userDennied} />
+        <WaitingLocation />
         </div>
     );
 }

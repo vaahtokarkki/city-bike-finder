@@ -1,22 +1,25 @@
-export function getGeolocation(callback) {
+import GeolocationActions from "../Actions/GeolocationActions";
+
+export function getGeolocation() {
   navigator.geolocation.getCurrentPosition(
     position => {
       console.log("user location OK");
-
-      callback({
+      const locationObject = {
         location: position,
         userDennied: false
-      });
-      return;
+      };
+
+      GeolocationActions.updateLocation(locationObject);
     },
     error => {
       console.log(error);
 
-      callback({
+      const locationObject = {
         location: null,
         userDennied: true
-      });
-      return;
+      };
+
+      GeolocationActions.updateLocation(locationObject);
     },
     { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
   );

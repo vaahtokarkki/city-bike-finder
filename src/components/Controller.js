@@ -15,10 +15,6 @@ class Controller extends Component {
     super();
 
     this.state = {
-      geolocation: {
-        userDennied: false,
-        location: null
-      },
       apiParams: {
         minBikesLeft: 1,
         resultsAmount: 5
@@ -37,14 +33,8 @@ class Controller extends Component {
     this.props.history.push("/submit");
   }
 
-  handleGetGeolocation(params) {
-    this.setState({
-      geolocation: params
-    });
-  }
-
   componentDidMount() {
-    getGeolocation(this.handleGetGeolocation.bind(this));
+    getGeolocation();
   }
 
   render() {
@@ -60,17 +50,12 @@ class Controller extends Component {
           render={props => (
             <BikesAPI
               apiParams={this.state.apiParams}
-              geolocation={this.state.geolocation}
               submitFromForm={this.state.submitFromForm}
             />
           )}
         />
         <Route exact path="/stations" component={Results} />
-        <Route
-          exact
-          path="/map"
-          render={props => <MapScene geolocation={this.state.geolocation} />}
-        />
+        <Route exact path="/map" component={MapScene} />} />
       </div>
     );
   }
