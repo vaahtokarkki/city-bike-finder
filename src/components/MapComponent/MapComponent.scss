@@ -1,10 +1,10 @@
 @import "styles/colors.scss";
 
 .map {
-    height: 100%;
-    height: -webkit-calc(100% - 64px);
-    height: -moz-calc(100% - 64px);
-    height: calc(100% - 64px);
+    height: 100% !important;
+    height: -webkit-calc(100% - 64px) !important;
+    height: -moz-calc(100% - 64px) !important;
+    height: calc(100% - 60px) !important;
 
     .station-icon {
         width: 30px !important;

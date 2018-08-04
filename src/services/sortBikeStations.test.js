@@ -24,7 +24,6 @@ describe("Sort bike stations", () => {
     const suffledStations = shuffleArray(testStations);
     const sorted = sortBikeStations(
       suffledStations,
-      testStations.length,
       testLocation.lat,
       testLocation.lon
     );
@@ -35,7 +34,6 @@ describe("Sort bike stations", () => {
     const suffledStations = shuffleArray(testStations);
     const sorted = sortBikeStations(
       suffledStations,
-      testStations.length,
       testLocation.lat,
       testLocation.lon
     );
@@ -46,7 +44,6 @@ describe("Sort bike stations", () => {
     const suffledStations = shuffleArray(testStations);
     const sorted = sortBikeStations(
       suffledStations,
-      testStations.length,
       testLocation.lat,
       testLocation.lon
     );

@@ -33,7 +33,7 @@ class MapComponent extends Component {
   }
 
   addStations() {
-    if (this.state.stationsObject.stations === undefined || this.state.stationsObject.stations.length === 0)
+    if (this.state.stationsObject === undefined || this.state.stationsObject.stations.length === 0)
       return [];
 
     let arrayOfMarkes = this.state.stationsObject.stations.map((s, i) => {

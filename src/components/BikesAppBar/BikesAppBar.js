@@ -20,7 +20,7 @@ export const BikesAppBar = props => {
   }
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" className="app-bar">
       <Toolbar>
         <IconButton
           onClick={() => onBack()}
