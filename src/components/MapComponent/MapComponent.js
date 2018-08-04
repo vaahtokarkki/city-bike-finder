@@ -12,7 +12,7 @@ class MapComponent extends Component {
   constructor() {
     super();
     this.state = {
-      stations: BikeStationStore.getAllItems(),
+      stationsObject: BikeStationStore.getAllItems(),
       zoom: 15
     };
     this._onChange = this._onChange.bind(this);
@@ -33,10 +33,10 @@ class MapComponent extends Component {
   }
 
   addStations() {
-    if (this.state.stations === undefined || this.state.stations.length === 0)
+    if (this.state.stationsObject.stations === undefined || this.state.stationsObject.stations.length === 0)
       return [];
 
-    let arrayOfMarkes = this.state.stations.map((s, i) => {
+    let arrayOfMarkes = this.state.stationsObject.stations.map((s, i) => {
       const pos = [s.station.lat, s.station.lon];
       let stationIcon = new DivIcon({
         className: "station-icon",

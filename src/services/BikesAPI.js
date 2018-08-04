@@ -105,14 +105,21 @@ class BikesAPI extends Component {
 
             let sorted = sortBikeStations(
               parsed,
-              this.props.apiParams.resultsAmount,
               this.state.geolocation.location.coords.latitude,
               this.state.geolocation.location.coords.longitude
             );
 
-            sorted = sorted.slice(0, this.props.resultsAmount);
+            //sorted = sorted.slice(0, this.props.resultsAmount);
+            const toStore = {
+              displayAmount: this.props.apiParams.resultsAmount,
+              stations: sorted
+            };
 
-            BikeStationsActions.addStations(sorted);
+            console.log(this.props);
+            console.log(toStore);
+            
+
+            BikeStationsActions.addStations(toStore);
             this.props.history.push("/stations");
 
             return null;

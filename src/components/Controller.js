@@ -55,7 +55,7 @@ class Controller extends Component {
           )}
         />
         <Route exact path="/stations" component={Results} />
-        <Route exact path="/map" component={MapScene} />} />
+        <Route exact path="/map" component={MapScene} />
       </div>
     );
   }

@@ -20,17 +20,6 @@ describe("Sort bike stations", () => {
   ];
   const testLocation = { lat: 60.0, lon: 25.0 };
 
-  it("Always return correct amount of stations", () => {
-    const resultsAmount = 2;
-    const sorted = sortBikeStations(
-      testStations,
-      resultsAmount,
-      testLocation.lat,
-      testLocation.lon
-    );
-    expect(sorted.length).toBe(resultsAmount);
-  });
-
   it("Order is correct, station 1", () => {
     const suffledStations = shuffleArray(testStations);
     const sorted = sortBikeStations(

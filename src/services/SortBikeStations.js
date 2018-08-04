@@ -1,6 +1,6 @@
 import geodist from 'geodist'
 
-export function sortBikeStations(stations, resultsAmount, userLat, userLon) {
+export function sortBikeStations(stations, userLat, userLon) {
     let withDistances = stations.map(obj => {
         let distance = geodist(
             {lat: userLat, lon: userLon},
@@ -15,7 +15,6 @@ export function sortBikeStations(stations, resultsAmount, userLat, userLon) {
         return a.distance - b.distance;
     });
     
-    withDistances = withDistances.slice(0,resultsAmount);
 
     return withDistances;
 }

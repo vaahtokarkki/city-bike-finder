@@ -8,7 +8,7 @@ class BikeStationList extends Component {
   constructor() {
     super();
     this.state = {
-      stations: BikeStationStore.getAllItems()
+      stationsObject: BikeStationStore.getAllItems()
     };
     this._onChange = this._onChange.bind(this);
   }
@@ -26,14 +26,16 @@ class BikeStationList extends Component {
   }
 
   render() {
-    if (this.state.stations === undefined || this.state.stations.length === 0) {
+    if (this.state.stationsObject.stations === undefined || this.state.stationsObject.stations === 0) {
       this.props.history.push("/");
       return null;
     }
 
+    const results = this.state.stationsObject.stations.slice(0, this.state.stationsObject.displayAmount);
+
     return (
       <List>
-        {this.state.stations.map((s, index) => (
+        {results.map((s, index) => (
           <BikeStation
             name={s.station.name}
             lat={s.station.lat}
