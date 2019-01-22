@@ -64,7 +64,7 @@ class BikesAPI extends Component {
   Use negative number for getting only empty stations
   */
 
-    data = data.filter(({ state }) => state === "Station on");
+    //data = data.filter(({ state }) => state === "Station on");
 
     if (amount < 0) {
       return data.filter(({ bikesAvailable }) => bikesAvailable === 0);

@@ -26,9 +26,11 @@ class BikeStationList extends Component {
   }
 
   render() {
-    if (this.state.stationsObject === undefined || this.state.stationsObject.stations.length === 0) {
+    if (this.state.stationsObject === undefined) {
       this.props.history.push("/");
       return null;
+    } else if (this.state.stationsObject.stations.length === 0) {
+      return <h1>Sopivia asemia ei löytynyt!</h1>
     }
 
     const results = this.state.stationsObject.stations.slice(0, this.state.stationsObject.displayAmount);
