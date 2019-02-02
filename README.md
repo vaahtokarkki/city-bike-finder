@@ -6,6 +6,8 @@ Simple React app to find the closest city bike station having given number of fr
 
 [Live demo](https://city-bikes-finder.herokuapp.com) of app.
 
+Note: In the live demo, during the wintertime there's no city bikes available, but you can find the nearest empty station.
+
 ---
 
 ## Requirements
