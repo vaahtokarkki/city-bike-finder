@@ -9,6 +9,13 @@ class GeolocationActions {
             payload: item 
         });
     }
+
+    startLocationTracking(intervalId) {
+        Dispatcher.dispatch({
+            actionType: ActionTypes.START_TRACKING,
+            payload: intervalId 
+        });
+    }
  
 }
  

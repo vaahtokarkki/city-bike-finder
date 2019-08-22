@@ -14,6 +14,7 @@ import Radio from "@material-ui/core/Radio";
 
 import "./Form.css";
 import { Header } from "../../components/Header/Header";
+import FilterActions from "../../Actions/FilterActions";
 
 class Form extends Component {
   constructor() {
@@ -26,6 +27,11 @@ class Form extends Component {
   }
 
   onClickSubmit() {
+    FilterActions.changeFilter({
+      minBikesAvailable: this.state.minBikesLeft,
+      results: this.state.resultsAmount
+    })
+
     this.props.submit({
       minBikesLeft: this.state.minBikesLeft,
       resultsAmount: this.state.resultsAmount
@@ -33,6 +39,11 @@ class Form extends Component {
   }
 
   onClickFindEmpty() {
+    FilterActions.changeFilter({
+      minBikesAvailable: -1,
+      results: this.state.resultsAmount
+    })
+
     this.props.submit({
       minBikesLeft: -1,
       resultsAmount: this.state.resultsAmount

@@ -3,10 +3,12 @@ import Dispatcher from "../Dispatcher/index";
 import ActionTypes from "../Constants/index";
 
 const CHANGE = "CHANGE";
-let _geolocationState = null;
-let _intervalObject = null;
+let _filterState = {
+    minBikesAvailable: 1,
+    results: 10
+};
 
-class GeolocationStore extends EventEmitter {
+class FilterStore extends EventEmitter {
   constructor() {
     super();
 
@@ -17,24 +19,23 @@ class GeolocationStore extends EventEmitter {
   // Switches over the action's type when an action is dispatched.
   _registerToActions(action) {
     switch (action.actionType) {
-      case ActionTypes.UPDATE_LOCATION:
-        this._addNewItem(action.payload);
+      case ActionTypes.CHANGE_FILTER:
+        this._changeFilter(action.payload);
         break;
-
       default:
         return true;
     }
   }
 
   // Adds a new item to the list and emits a CHANGED event.
-  _addNewItem(item) {
-    _geolocationState = item;
+  _changeFilter(item) {
+    _filterState = item
     this.emit(CHANGE);
   }
 
   // Returns the current store's state.
-  getLocation() {
-    return _geolocationState;
+  getFilter() {
+    return _filterState;
   }
 
   // Hooks a React component's callback to the CHANGED event.
@@ -46,15 +47,6 @@ class GeolocationStore extends EventEmitter {
   removeChangeListener(callback) {
     this.removeListener(CHANGE, callback);
   }
-
-  registerTracking(payload) {
-    _intervalObject = payload;
-  }
-
-  unregisterTracking() {
-    clearInterval(_intervalObject)
-    _intervalObject = null
-  }
 }
 
-export default new GeolocationStore();
+export default new FilterStore();

@@ -9,19 +9,46 @@ import Button from "@material-ui/core/Button";
 
 import "./Results.css";
 
+import {sortBikeStations,filterStations} from "../../services/SortBikeStations";
+import FilterStore from "../../stores/FilterStore";
+import BikeStationStore from "../../stores/BikeStationStore";
+
 class Results extends Component {
+  constructor() {
+    super()
+
+
+    this.state = {
+      stations : []
+    }
+  }
+
+  getStations = () => {
+    const allStations = BikeStationStore.getAllItems()
+    const sortedStations = sortBikeStations(allStations)
+    const filter = FilterStore.getFilter()
+
+    return filterStations(sortedStations, filter.minBikesAvailable, filter.results)
+  }
+
   onClickShowMap() {
     this.props.history.push("/map");
   }
 
   render() {
+    if(BikeStationStore.isEmpty()) {
+      this.props.history.push("/")
+      return null
+    }
+
+    const results = this.getStations()
     return (
       <div className="results-wrapper">
         <BikesAppBar />
         <div className="resultslist-wrapper">
           <Grid container spacing={0} justify="center">
             <Grid item xs={10} className="stations-container">
-              <BikeStationList />
+              <BikeStationList stations={results} />
             </Grid>
             <Grid item xs={10} align="center">
               <Button

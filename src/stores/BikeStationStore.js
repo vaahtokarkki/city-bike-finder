@@ -4,6 +4,7 @@ import ActionTypes from "../Constants/index";
 
 const CHANGE = "CHANGE";
 let _bikeStationsState = [];
+let _bikesLoading = true;
 
 class BikeStationStore extends EventEmitter {
   constructor() {
@@ -17,24 +18,46 @@ class BikeStationStore extends EventEmitter {
   _registerToActions(action) {
     switch (action.actionType) {
       case ActionTypes.ADD_STATIONS:
-        this._addNewItem(action.payload);
+        this._addAllStations(action.payload);
         break;
-
+      case ActionTypes.ADD_ONE:
+        this._addOneStation(action.payload)
+        break;
       default:
         return true;
     }
   }
 
   // Adds a new item to the list and emits a CHANGED event.
-  _addNewItem(item) {
-    item.id = _bikeStationsState.length;
-    _bikeStationsState.push(item);
+  _addAllStations(stations) {
+    _bikeStationsState = stations;
+    _bikesLoading = false;
+    this.emit(CHANGE);
+  }
+
+  _addOneStation(station) {
+    const stationsOldRemoved = _bikeStationsState.filter(s => s.stationId === station.stationId)
+    const updatedStations = stationsOldRemoved.concat(station)
+    _bikeStationsState = updatedStations
+    _bikesLoading = false;
     this.emit(CHANGE);
   }
 
   // Returns the current store's state.
   getAllItems() {
-    return _bikeStationsState[_bikeStationsState.length - 1];
+    return _bikeStationsState;
+  }
+
+  getOneStation(id) {
+    return _bikeStationsState.filter(s => s.stationId === id)
+  }
+
+  isEmpty() {
+    return _bikeStationsState.length === 0
+  }
+
+  isLoading() {
+    return _bikesLoading
   }
 
   // Hooks a React component's callback to the CHANGED event.

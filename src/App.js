@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import {HashRouter} from "react-router-dom";
 
 import Controller from "./components/Controller.js";
+import {startLocationTracking} from "./services/Geolocation";
 
 import "./App.css";
 
@@ -17,6 +18,10 @@ class App extends Component {
     this.setState({
       stations: stations
     });
+  }
+
+  componentDidMount() {
+    startLocationTracking()
   }
 
   render() {

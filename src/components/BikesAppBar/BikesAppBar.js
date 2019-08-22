@@ -12,11 +12,12 @@ import "./BikesAppBar.css";
 
 export const BikesAppBar = props => {
   function onBack() {
-    if(window.location.hash === "#/map") {
-      props.history.go(-1);
-      return;
-    }
-    props.history.go(-2);
+    if(props.history.action === 'POP')
+      props.history.push('/')
+
+    if(window.location.hash === '#/') return
+    
+    props.history.go(-1);
   }
 
   return (

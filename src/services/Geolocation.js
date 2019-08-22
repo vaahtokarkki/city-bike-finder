@@ -1,9 +1,11 @@
+import geodist from 'geodist'
+
 import GeolocationActions from "../Actions/GeolocationActions";
+import GeolocationStore from "../stores/GeolocationStore";
 
 export function getGeolocation() {
   navigator.geolocation.getCurrentPosition(
     position => {
-      console.log("user location OK");
       const locationObject = {
         location: position,
         userDennied: false
@@ -25,4 +27,28 @@ export function getGeolocation() {
   );
 }
 
-export default getGeolocation;
+export function startLocationTracking() {
+  getGeolocation() // To get loaction before first interval
+  const trackingInterval = setInterval(() => {
+    getGeolocation()
+  }, 5000);
+  GeolocationActions.startLocationTracking(trackingInterval) 
+}
+
+export function getDistanceToCurrent(lat,lon) {
+  const userLocation = GeolocationStore.getLocation()
+
+  if(!userLocation)
+    return null
+
+  const userLat = userLocation.location.coords.latitude
+  const userLon = userLocation.location.coords.longitude
+
+  const distance = geodist(
+    {lat: lat, lon: lon},
+    {lat: userLat, lon: userLon},    
+    {exact: true, unit: 'meters'}
+  )
+
+  return Math.round(distance)
+}

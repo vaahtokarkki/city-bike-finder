@@ -1,0 +1,17 @@
+@import "styles/colors.scss";
+
+.station-details-wrapper {
+    margin-top: 10px;
+
+    .station-avatar {
+        background-color: $avatar-bg;
+    }
+
+    .station-detail-text {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top:20px;
+    }
+}
+
