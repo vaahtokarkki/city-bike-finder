@@ -30,9 +30,9 @@ Now you should have running app on https://localhost:3000
 
 ## Examples
 
-Screenshot of app:
+Demo of app:
 
-![Landing page](./screenshots/landingpage.png) ![Results page](./screenshots/resultspage.png)
+![Demo](./screenshots/demo.gif)
 ---
 
 ### Todo:
