@@ -31,6 +31,7 @@ Now you should have running app on https://localhost:3000
 ## Examples
 
 Screenshot of app:
+
 ![Landing page](./screenshots/landingpage.png) ![Results page](./screenshots/resultspage.png)
 ---
 
@@ -43,8 +44,7 @@ Screenshot of app:
 ### Built with
 
 - [Material-UI](https://github.com/mui-org/material-ui/) - Material UI components
-- [Leaflet](https://github.com/Leaflet/Leaflet) - JS Map library, used with
-- [react-leaflet](https://github.com/PaulLeCam/react-leaflet)
+- [Leaflet](https://github.com/Leaflet/Leaflet) - JS Map library, used with [react-leaflet](https://github.com/PaulLeCam/react-leaflet)
 - [React Apollo](https://github.com/apollographql/react-apollo) - GraphQL client for React
 - [geodist](https://github.com/cmoncrief/geodist) - Coordinates distance calculation
 
